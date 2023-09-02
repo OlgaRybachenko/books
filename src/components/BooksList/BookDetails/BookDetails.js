@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import parse from 'html-react-parser';
 import { getBookById } from "../../../api/booksApi";
+import { useParams } from "react-router-dom";
 
-function BookDetails({ bookId }) {
+function BookDetails() {
+  const { bookId } = useParams();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     getBookById(bookId)
-    // fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   setBook(data);
     .then((response) => {
       setBook(response.data);
       setError(false);
