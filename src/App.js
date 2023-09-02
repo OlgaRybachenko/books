@@ -6,16 +6,23 @@ import BookDetails from './components/BooksList/BookDetails/BookDetails';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import NotFound from './components/NotFount/NotFount';
 import About from './components/About/About';
+import { ThemeContext } from './context';
+import ThemeToggler from './components/ThemeToggler/ThemeToggler';
 
 
 function App() {
   const [search, setSearch] = useState('');
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));  //меняем тему
+  }
 
   return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
     <Router>
     <div className="app">
       <SearchBar setSearch={setSearch} />
+      <ThemeToggler />
       <Routes>
         <Route path='/' element={<BooksList search={search} />}>
         </Route>
@@ -26,6 +33,7 @@ function App() {
       </Routes>
     </div>
     </Router>
+    </ThemeContext.Provider>
   );
 }
 
