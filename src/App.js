@@ -1,13 +1,14 @@
 import BooksList from './components/BooksList/BooksList';
 import './App.css';
 import React, { useState} from 'react';
-import SearchBar from './components/SearchBar/SearchBar';
+// import SearchBar from './components/SearchBar/SearchBar';
 import BookDetails from './components/BooksList/BookDetails/BookDetails';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import NotFound from './components/NotFount/NotFount';
 import About from './components/About/About';
-import { ThemeContext } from './context';
-import ThemeToggler from './components/ThemeToggler/ThemeToggler';
+import { ThemeContext,SearchContext } from './context';
+import Header from './components/Header/Header';
+// import ThemeToggler from './components/ThemeToggler/ThemeToggler';
 
 
 function App() {
@@ -19,12 +20,15 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <SearchContext.Provider value={{ search, setSearch }}>
+    
     <Router>
     <div className="app">
-      <SearchBar setSearch={setSearch} />
-      <ThemeToggler />
+      {/* <SearchBar setSearch={setSearch} />
+      <ThemeToggler /> */}
+      <Header setSearch={setSearch} />
       <Routes>
-        <Route path='/' element={<BooksList search={search} />}>
+        <Route path='/' element={<BooksList />}>
         </Route>
         <Route path='/book/:bookId' element={<BookDetails />}></Route>
         <Route path='/about' element={<About />}></Route>
@@ -33,6 +37,7 @@ function App() {
       </Routes>
     </div>
     </Router>
+    </SearchContext.Provider>
     </ThemeContext.Provider>
   );
 }

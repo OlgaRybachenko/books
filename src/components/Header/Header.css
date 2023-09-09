@@ -1,0 +1,8 @@
+.header {
+  padding: 20px 0;
+  background: #eaeaea;
+}
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}

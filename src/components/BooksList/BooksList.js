@@ -1,12 +1,15 @@
-import React, { useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { getBookBySearchTerm } from '../../api/booksApi';
 import { Link } from 'react-router-dom';
+import { SearchContext } from '../../context';
 
 
 
-function BooksList({ search }) {
+function BooksList() {
+  const { search } = useContext(SearchContext);
   const [books, setBooks] = useState([]);
   useEffect(() => {
+
     if (search) {
       getBookBySearchTerm(search)
       .then((response) => {
@@ -21,6 +24,7 @@ function BooksList({ search }) {
   }, [search]);
   return (
     <div className='books'>
+      <div className='container'>
       <h1>Books</h1>
       <ul>
         {books.map((book, index) => (
@@ -32,7 +36,7 @@ function BooksList({ search }) {
             </li>
         ))}
       </ul>
-
+      </div>
     </div>
 
   );
