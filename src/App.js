@@ -13,6 +13,7 @@ import Header from './components/Header/Header';
 
 function App() {
   const [search, setSearch] = useState('');
+  const [filters, setFilters] = useState({});
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));  //меняем тему
@@ -20,12 +21,10 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider value={{ search, setSearch, filters, setFilters }}>
     
     <Router>
     <div className="app">
-      {/* <SearchBar setSearch={setSearch} />
-      <ThemeToggler /> */}
       <Header setSearch={setSearch} />
       <Routes>
         <Route path='/' element={<BooksList />}>

@@ -1,17 +1,23 @@
-import React, { useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState, useMemo } from 'react';
 import { getBookBySearchTerm } from '../../api/booksApi';
 import { Link } from 'react-router-dom';
 import { SearchContext } from '../../context';
+import FilterBar from '../FilterBar/FilterBar';
 
 
 
 function BooksList() {
-  const { search } = useContext(SearchContext);
+  const { search, filters } = useContext(SearchContext);
   const [books, setBooks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = 10;       //лимит 10 книг
+  const hanlePageChange = ( pageNumber) => {
+    setCurrentPage(pageNumber);
+  }
   useEffect(() => {
 
     if (search) {
-      getBookBySearchTerm(search)
+      getBookBySearchTerm(search, currentPage, booksPerPage, filters)
       .then((response) => {
         if (response.data.items) {
           setBooks(response.data.items);
@@ -21,21 +27,29 @@ function BooksList() {
       })
       .catch((error) => console.error(error));
     }
-  }, [search]);
+  }, [search, currentPage, filters]);
+  const memoizedBooks = useMemo(() =>              //сохраняем запросы в память
+    books.map((book, index) => (
+      <li key={index}>
+        <Link to={`/book/${book.id}`} title={book.volumeInfo.title}>{book.volumeInfo.title}</Link>
+        
+        </li>
+    )), [books],
+  );
   return (
     <div className='books'>
       <div className='container'>
-      <h1>Books</h1>
+      {search && books.length > 0 &&<h1>Books</h1>}
+      {search && <FilterBar />}
       <ul>
-        {books.map((book, index) => (
-          <li key={index}>
-            <Link to={`/book/${book.id}`} title={book.volumeInfo.title}>{book.volumeInfo.title}</Link>
-            {/* <a title='book name' href='#' onClick={() =>
-            onSelectBook(book.id)}>
-            {book.volumeInfo.title}</a> */}
-            </li>
-        ))}
+        {memoizedBooks}
       </ul>
+      {search && books.length > 0 && (
+        <>
+        <button onClick={() => hanlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>        {/*управление переключением страниц*/}
+        <button onClick={() => hanlePageChange(currentPage + 1)}>Next</button>
+        </>
+      )}
       </div>
     </div>
 
