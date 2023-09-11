@@ -6,3 +6,14 @@
   display: flex;
   justify-content: space-between;
 }
+ 
+@media(max-width: 600px) {
+  .navigation {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .header {
+    padding: 0;
+  }
+}
+  
