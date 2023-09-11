@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './SearchBar.css'
 
 function SearchBar({ setSearch }) {
   const [searchValue, setSearchValue] = useState('');     //по умолчанию строка запроса пустая
@@ -9,9 +10,8 @@ function SearchBar({ setSearch }) {
     <div className='search'>
       <input type="text" placeholder="Search Books..."
       onChange={(event) => setSearchValue(event.target.value)} />
-      <button onClick={handleSearch}>Search</button>
+      <button  className='btn-searchbar' onClick={handleSearch}>Search</button>
     </div>
-
   );
 }
 

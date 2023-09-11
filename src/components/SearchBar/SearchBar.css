@@ -1,0 +1,15 @@
+.btn-searchbar {
+  background-color: #656665;
+  border: none;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.btn-searchbar:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}

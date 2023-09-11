@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-
 import { SearchContext } from "../../context";
+
 const languages = [
   {code: "en", label: "English"},
   {code: "fr", label: "French"},

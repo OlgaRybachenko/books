@@ -3,8 +3,7 @@ import { getBookBySearchTerm } from '../../api/booksApi';
 import { Link } from 'react-router-dom';
 import { SearchContext } from '../../context';
 import FilterBar from '../FilterBar/FilterBar';
-
-
+import './BooksList.css'
 
 function BooksList() {
   const { search, filters } = useContext(SearchContext);
@@ -32,7 +31,6 @@ function BooksList() {
     books.map((book, index) => (
       <li key={index}>
         <Link to={`/book/${book.id}`} title={book.volumeInfo.title}>{book.volumeInfo.title}</Link>
-        
         </li>
     )), [books],
   );
@@ -46,13 +44,12 @@ function BooksList() {
       </ul>
       {search && books.length > 0 && (
         <>
-        <button onClick={() => hanlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>        {/*управление переключением страниц*/}
-        <button onClick={() => hanlePageChange(currentPage + 1)}>Next</button>
+        <button className='previous round' onClick={() => hanlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>        {/*управление переключением страниц*/}
+        <button className='next round' onClick={() => hanlePageChange(currentPage + 1)}>Next</button>
         </>
       )}
       </div>
     </div>
-
   );
 }
 

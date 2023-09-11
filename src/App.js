@@ -1,15 +1,12 @@
 import BooksList from './components/BooksList/BooksList';
 import './App.css';
 import React, { useState} from 'react';
-// import SearchBar from './components/SearchBar/SearchBar';
 import BookDetails from './components/BooksList/BookDetails/BookDetails';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import NotFound from './components/NotFount/NotFount';
-import About from './components/About/About';
 import { ThemeContext,SearchContext } from './context';
 import Header from './components/Header/Header';
-// import ThemeToggler from './components/ThemeToggler/ThemeToggler';
-
+import About from './components/About/About';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -18,11 +15,9 @@ function App() {
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));  //меняем тему
   }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
     <SearchContext.Provider value={{ search, setSearch, filters, setFilters }}>
-    
     <Router>
     <div className="app">
       <Header setSearch={setSearch} />

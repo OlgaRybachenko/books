@@ -1,5 +1,4 @@
 import './Header.css';
-
 import { useNavigate, Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import { SearchContext } from '../../context';
@@ -23,12 +22,9 @@ function Header() {
           <Link to='/about'>About</Link>
           <ThemeToggler />
         </nav>
-
       </div>
-
     </header>
   )
-
 }
 
 

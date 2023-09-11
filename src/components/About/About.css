@@ -1,0 +1,19 @@
+.about .container {
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbEJjelpWPTTOp0pht1C8CznfvFbICrDSiHA&usqp=CAU) no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 700px;
+}
+h1 {
+  font-size: 44px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  padding-top: 50px;
+}
+p {
+  font-size: 24px;
+  font-weight: 300px;
+  color: #fff;
+  text-align: center;
+}

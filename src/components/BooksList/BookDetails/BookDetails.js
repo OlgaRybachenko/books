@@ -12,7 +12,6 @@ function BookDetails() {
     getBookById(bookId)
     .then((response) => {
       setBook(response.data);
-      
     })
     .catch((error) => {
       console.error(error);
@@ -42,4 +41,5 @@ function BookDetails() {
     </div>
   )
 }
+
 export default BookDetails;
